@@ -15,7 +15,9 @@ const UserSchema = Schema({
 
 UserSchema.methods.toJSON = function () {
   // extraemos lo que no queremos retornar en la res.json; en este caso: password y __v (versión)
-  const { __v, pass, ...user } = this.toObject();
+  const { __v, pass, _id, ...user } = this.toObject();
+  // podemos cambiar las propiedades del User así:
+  user.uid = _id;
   return user;
 };
 
